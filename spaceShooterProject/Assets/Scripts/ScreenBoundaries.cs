@@ -29,12 +29,21 @@ public class ScreenBoundaries : MonoBehaviour {
         rightSide.x = rightSide.x + colliderBounds.extents.x;
         topSide.x = topSide.x + colliderBounds.extents.y;
         bottomSide.x = bottomSide.x - colliderBounds.extents.y;
-        
+
+        Debug.Log("love" + transform.position.x);
+
         // test if the left is not before the screen bound
         // on prend les coordonnées calculées (left), on les projette sur l'écran via la caméra
         // et on vérifie que ça ne sort pas de l'écran
         if (Camera.main.WorldToScreenPoint(leftSide).x < 0)
         {
+            Vector3 backPos = Camera.main.ScreenToWorldPoint(Vector3.zero);
+            backPos.x = backPos.x + colliderBounds.extents.x;
+            backPos.y = transform.position.y;
+            backPos.z = transform.position.z;
+            
+            transform.position = backPos;
+
             Debug.Log("Left of the screen");
         }
         else if (Camera.main.WorldToScreenPoint(rightSide).x > Screen.width)

@@ -3,7 +3,7 @@
 public class Controls : MonoBehaviour {
 
     private Vector3 currentPos = new Vector3();
-    private float unitPerSec = 4.0f;
+    private float unitPerSec = 6.0f;
 
     // Use this for initialization
     void Start()
