@@ -30,19 +30,19 @@ public class ScreenBoundaries : MonoBehaviour {
         topSide.x = topSide.x + colliderBounds.extents.y;
         bottomSide.x = bottomSide.x - colliderBounds.extents.y;
 
-        Debug.Log("love" + transform.position.x);
+        //Debug.Log("love" + transform.position.x);
 
         // test if the left is not before the screen bound
         // on prend les coordonnées calculées (left), on les projette sur l'écran via la caméra
         // et on vérifie que ça ne sort pas de l'écran
         if (Camera.main.WorldToScreenPoint(leftSide).x < 0)
         {
-            Vector3 backPos = Camera.main.ScreenToWorldPoint(Vector3.zero);
-            backPos.x = backPos.x + colliderBounds.extents.x;
-            backPos.y = transform.position.y;
-            backPos.z = transform.position.z;
+            //Vector3 backPos = Camera.main.ScreenToWorldPoint(Vector3.zero);
+            //backPos.x = backPos.x + colliderBounds.extents.x;
+            //backPos.y = transform.position.y;
+            //backPos.z = transform.position.z;
             
-            transform.position = backPos;
+            //transform.position = backPos;
 
             Debug.Log("Left of the screen");
         }
@@ -59,6 +59,14 @@ public class ScreenBoundaries : MonoBehaviour {
         {
             Debug.Log("up of the screen");
         }
+
+
+        var pos = Camera.main.WorldToViewportPoint(transform.position);
+        Debug.Log("viewPort1 : " + transform.position);
+        pos.x = Mathf.Clamp(pos.x, 0.1f, 0.9f);
+        pos.y = Mathf.Clamp(pos.y, 0.1f, 0.9f);
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
+        Debug.Log("viewPort2 : " + transform.position);
 
     }
 }

@@ -15,7 +15,8 @@ public class Controls : MonoBehaviour {
     void Update () {
         float moveSpeed = unitPerSec * Time.deltaTime;
 
-		if(Input.GetKey(KeyCode.UpArrow))
+        currentPos = transform.position;
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             currentPos.y = currentPos.y + moveSpeed;
         }
@@ -36,5 +37,6 @@ public class Controls : MonoBehaviour {
         }
 
         transform.position = currentPos;
-	}
+        Debug.Log("controls : " + transform.position);
+    }
 }
