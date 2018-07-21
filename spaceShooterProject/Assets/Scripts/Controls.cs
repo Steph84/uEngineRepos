@@ -1,21 +1,25 @@
 ﻿using UnityEngine;
 
-public class Controls : MonoBehaviour {
+public class Controls : MonoBehaviour
+{
 
-    private Vector3 currentPos = new Vector3();
-    private float unitPerSec = 6.0f;
+    private Vector2 currentPos = new Vector2();
+    private readonly float unitPerSec = 6.0f;
 
     // Use this for initialization
     void Start()
     {
-        currentPos = transform.position;
+
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         float moveSpeed = unitPerSec * Time.deltaTime;
 
+        // reinitialize currentPos otherwise
         currentPos = transform.position;
+
         if (Input.GetKey(KeyCode.UpArrow))
         {
             currentPos.y = currentPos.y + moveSpeed;
@@ -37,6 +41,5 @@ public class Controls : MonoBehaviour {
         }
 
         transform.position = currentPos;
-        Debug.Log("controls : " + transform.position);
     }
 }

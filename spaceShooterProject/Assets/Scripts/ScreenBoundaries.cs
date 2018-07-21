@@ -1,72 +1,23 @@
 ﻿using UnityEngine;
 
-public class ScreenBoundaries : MonoBehaviour {
+public class ScreenBoundaries : MonoBehaviour
+{
 
-    BoxCollider2D myCollider;
+    void Start()
+    {
 
-	void Start () {
-        // get the component
-        myCollider = GetComponent<BoxCollider2D>();
-        if (myCollider == null) // if not create one with default values
-        {
-            myCollider = gameObject.AddComponent<BoxCollider2D>();
-        }
     }
-	
 
-	void Update () {
-        // get the boundary of the sprite
-        Bounds colliderBounds = myCollider.bounds;
+    void Update()
+    {
+        // get the sprite position in the ViewPort coordinates
+        var spriteCoord = Camera.main.WorldToViewportPoint(transform.position);
 
-        // get the sprite position
-        Vector3 leftSide = transform.position;
-        Vector3 rightSide = transform.position;
-        Vector3 topSide = transform.position;
-        Vector3 bottomSide = transform.position;
-        // substract the x extends to have the left side
-        // extends is half the size of bounds
-        leftSide.x = leftSide.x - colliderBounds.extents.x;
-        rightSide.x = rightSide.x + colliderBounds.extents.x;
-        topSide.x = topSide.x + colliderBounds.extents.y;
-        bottomSide.x = bottomSide.x - colliderBounds.extents.y;
+        // clamp the coordinates to keep the sprite into the ViewPort
+        spriteCoord.x = Mathf.Clamp(spriteCoord.x, 0.01f, 0.99f);
+        spriteCoord.y = Mathf.Clamp(spriteCoord.y, 0.01f, 0.99f);
 
-        //Debug.Log("love" + transform.position.x);
-
-        // test if the left is not before the screen bound
-        // on prend les coordonnées calculées (left), on les projette sur l'écran via la caméra
-        // et on vérifie que ça ne sort pas de l'écran
-        if (Camera.main.WorldToScreenPoint(leftSide).x < 0)
-        {
-            //Vector3 backPos = Camera.main.ScreenToWorldPoint(Vector3.zero);
-            //backPos.x = backPos.x + colliderBounds.extents.x;
-            //backPos.y = transform.position.y;
-            //backPos.z = transform.position.z;
-            
-            //transform.position = backPos;
-
-            Debug.Log("Left of the screen");
-        }
-        else if (Camera.main.WorldToScreenPoint(rightSide).x > Screen.width)
-        {
-            Debug.Log("Right of the screen");
-        }
-
-        if (Camera.main.WorldToScreenPoint(bottomSide).y < 0)
-        {
-            Debug.Log("bottom of the screen");
-        }
-        else if (Camera.main.WorldToScreenPoint(topSide).y > Screen.height)
-        {
-            Debug.Log("up of the screen");
-        }
-
-
-        var pos = Camera.main.WorldToViewportPoint(transform.position);
-        Debug.Log("viewPort1 : " + transform.position);
-        pos.x = Mathf.Clamp(pos.x, 0.1f, 0.9f);
-        pos.y = Mathf.Clamp(pos.y, 0.1f, 0.9f);
-        transform.position = Camera.main.ViewportToWorldPoint(pos);
-        Debug.Log("viewPort2 : " + transform.position);
-
+        // actualize the sprite position
+        transform.position = Camera.main.ViewportToWorldPoint(spriteCoord);
     }
 }
