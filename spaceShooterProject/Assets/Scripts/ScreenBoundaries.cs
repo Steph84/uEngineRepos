@@ -2,7 +2,6 @@
 
 public class ScreenBoundaries : MonoBehaviour
 {
-
     void Start()
     {
 

@@ -7,6 +7,10 @@ public class EnemyAI : MonoBehaviour
     private float changingTime;
     private int rangeRandom;
     private int deviderRandom;
+    private Vector3 heroPosition;
+    private Vector3 heroPositionVP;
+    private Vector3 enemyPositionVP;
+    private bool isHunting;
     public Rigidbody2D SpriteRigidBody;
     float myRandX = 0;
     float myRandY = 0;
@@ -20,6 +24,7 @@ public class EnemyAI : MonoBehaviour
         changingTime = 2;
         rangeRandom = 10;
         deviderRandom = 1;
+        isHunting = true;
 
         myRandX = GetRandomVelocity(rangeRandom, deviderRandom);
         myRandY = GetRandomVelocity(rangeRandom, deviderRandom);
@@ -31,17 +36,40 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        elpasedTime = elpasedTime + Time.deltaTime;
+        heroPositionVP = Camera.main.WorldToViewportPoint(GameObject.Find("myHero").transform.position);
+        enemyPositionVP = Camera.main.WorldToViewportPoint(transform.position);
+        var heading = heroPositionVP - enemyPositionVP;
+        var distance = heading.magnitude;
 
-        if (elpasedTime > changingTime)
+        if(distance < 0.5)
         {
-            myRandX = GetRandomVelocity(rangeRandom, deviderRandom);
-            myRandY = GetRandomVelocity(rangeRandom, deviderRandom);
-            elpasedTime = 0;
+            isHunting = true;
+        }
+        else
+        {
+            isHunting = false;
         }
 
-        SpriteRigidBody.velocity = new Vector2(myRandX, myRandY);
+        if (isHunting)
+        {
+            var direction = heading / distance;
 
+            // go to the hero
+        }
+        else
+        {
+            elpasedTime = elpasedTime + Time.deltaTime;
+
+            if (elpasedTime > changingTime)
+            {
+                myRandX = GetRandomVelocity(rangeRandom, deviderRandom);
+                myRandY = GetRandomVelocity(rangeRandom, deviderRandom);
+                elpasedTime = 0;
+            }
+
+            SpriteRigidBody.velocity = new Vector2(myRandX, myRandY);
+        }
+        SpriteRigidBody.velocity = Vector2.zero;
 
     }
 
@@ -54,6 +82,6 @@ public class EnemyAI : MonoBehaviour
         {
             myRand = (float)Random.Range(-range, range) / devider;
         }
-        return myRand * Time.deltaTime * 60;
+        return myRand * Time.deltaTime * 30;
     }
 }
