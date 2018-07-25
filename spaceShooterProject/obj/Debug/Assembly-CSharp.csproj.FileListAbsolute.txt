@@ -161,6 +161,8 @@ C:\Users\stephaneHome\Documents\GitHub\uEngineRepos\spaceShooterProject\Temp\bin
 C:\Users\stephaneHome\Documents\GitHub\uEngineRepos\spaceShooterProject\Temp\bin\Debug\UnityEngine.GoogleAudioSpatializer.xml
 C:\Users\stephaneHome\Documents\GitHub\uEngineRepos\spaceShooterProject\Temp\bin\Debug\UnityEngine.HoloLens.xml
 C:\Users\stephaneHome\Documents\GitHub\uEngineRepos\spaceShooterProject\Temp\bin\Debug\UnityEngine.SpatialTracking.xml
-C:\Users\stephaneHome\Documents\GitHub\uEngineRepos\spaceShooterProject\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\stephaneHome\Documents\GitHub\uEngineRepos\spaceShooterProject\obj\Debug\Assembly-CSharp.dll
 C:\Users\stephaneHome\Documents\GitHub\uEngineRepos\spaceShooterProject\obj\Debug\Assembly-CSharp.pdb
+C:\Users\stephaneHome\Documents\GitHub\uEngineRepos\spaceShooterProject\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\stephaneHome\Documents\GitHub\uEngineRepos\spaceShooterProject\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\stephaneHome\Documents\GitHub\uEngineRepos\spaceShooterProject\obj\Debug\Assembly-CSharp.csproj.CopyComplete

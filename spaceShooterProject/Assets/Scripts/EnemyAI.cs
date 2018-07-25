@@ -12,6 +12,12 @@ public class EnemyAI : MonoBehaviour
     private Vector3 enemyPositionVP;
     private bool isHunting;
     public Rigidbody2D SpriteRigidBody;
+
+    // the hero in public
+    // then drag and drop in the inspector
+    public GameObject theHero;
+
+
     float myRandX = 0;
     float myRandY = 0;
 
@@ -36,7 +42,7 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        heroPositionVP = Camera.main.WorldToViewportPoint(GameObject.Find("myHero").transform.position);
+        heroPositionVP = theHero.transform.position;
         enemyPositionVP = Camera.main.WorldToViewportPoint(transform.position);
         var heading = heroPositionVP - enemyPositionVP;
         var distance = heading.magnitude;
