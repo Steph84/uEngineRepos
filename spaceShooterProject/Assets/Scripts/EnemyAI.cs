@@ -17,7 +17,6 @@ public class EnemyAI : MonoBehaviour
     // then drag and drop in the inspector
     public GameObject theHero;
 
-
     float myRandX = 0;
     float myRandY = 0;
 
@@ -47,7 +46,7 @@ public class EnemyAI : MonoBehaviour
         var heading = heroPositionVP - enemyPositionVP;
         var distance = heading.magnitude;
 
-        if(distance < 0.5)
+        if (distance < 0.5)
         {
             isHunting = true;
         }
